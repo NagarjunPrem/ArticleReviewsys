@@ -1,0 +1,10 @@
+com\mycompany\articlerevsys\RatingsBean.class
+com\mycompany\articlerevsys\UsersBean.class
+com\mycompany\articlerevsys\AddReviewsBean.class
+com\mycompany\articlerevsys\Login.class
+com\mycompany\articlerevsys\Logout.class
+com\mycompany\articlerevsys\Users.class
+com\mycompany\articlerevsys\AddStar.class
+com\mycompany\articlerevsys\ReviewsBean.class
+com\mycompany\articlerevsys\Ratings.class
+com\mycompany\articlerevsys\Reviews.class

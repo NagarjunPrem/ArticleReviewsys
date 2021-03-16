@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"   
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      >
+  <h:head>
+	<title>Reviews of Articles</title>
+        Logged in User: <a><h:outputText value="#{sessionScope.userActive}" /></a><br></br>
+         UserID: <a><h:outputText value="#{sessionScope.userId}" /></a>
+          <a><h:outputText value="#{sessionScope.rid}" /></a>          
+          <h:form>
+        <h:commandButton value="Logout" action="#{logout.logout()}" style="float: right" ></h:commandButton>    
+        </h:form>
+        </h:head>
+    <br></br>
+    <br></br>
+    <br></br>
+<h:body>
+    	   
+       <h2>Reviews Details</h2>
+       <h:dataTable value="#{reviewsBean.reviews}" var="item" >
+	
+            <h:column>
+			<f:facet name="header">Review ID</f:facet>
+                        #{item.review_id}
+                                 
+            </h:column>
+             <h:column>
+			<f:facet name="header">Review Title</f:facet>
+                        #{item.review_title}
+                                 
+            </h:column>
+             <h:column>
+			<f:facet name="header">Publication Title</f:facet>
+                        #{item.pub_title}
+                                 
+            </h:column>
+             <h:column>
+			<f:facet name="header">Publication URL</f:facet>
+                        #{item.pub_url}
+                             
+            </h:column>
+             <h:column>
+			<f:facet name="header">Summary</f:facet>
+                        #{item.summary}                                 
+            </h:column>
+            <h:column>
+			<f:facet name="header">Positives and Negatives</f:facet>
+                        #{item.post_negt}                                 
+            </h:column>
+            <h:column>
+			<f:facet name="header">Major Points</f:facet>
+                        #{item.major_points}                                 
+            </h:column>
+            <h:column>
+			<f:facet name="header">Minor Points</f:facet>
+                        #{item.minor_points}                                 
+            </h:column>
+            <h:column>
+			<f:facet name="header">Recommendation</f:facet>
+                        #{item.recommendation}                                 
+            </h:column>
+            <h:column>
+			<f:facet name="header">Reviewer Name</f:facet>
+                        #{item.reviewer_name}                                 
+            </h:column>
+            <h:column>
+
+                
+                <input type="button" value="view" onclick="window.location.href='http://localhost:8080/ArticleRevSys/faces/ratings.xhtml?rid=#{item.review_id}'"  />  
+<p:dialog header="Rate Review" widgetVar="sample" minHeight="40">  
+<h:outputText value="Thankyou" />  
+</p:dialog>  
+            </h:column>
+	</h:dataTable>		
+	
+</h:body>
+</html>
