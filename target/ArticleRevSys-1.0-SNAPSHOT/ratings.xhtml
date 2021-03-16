@@ -12,21 +12,48 @@ and open the template in the editor.
       xmlns:p="http://primefaces.org/ui"
       >
   <h:head>
-	<title>Reviews of Articles</title>
-        Logged in User: <a><h:outputText value="#{sessionScope.userActive}" /></a><br></br>
-         UserID: <a><h:outputText value="#{sessionScope.userId}" /></a>
-          <a><h:outputText value="#{sessionScope.rid}" /></a>
-          <h:form>
-        <h:commandButton value="Logout" action="#{logout.logout()}" style="float: right" ></h:commandButton>    
-        </h:form>
-          
+	<title>Reviews of Article</title>
+       <a><h:outputText value="#{sessionScope.rid}" /></a>        
           
 </h:head>
-    <br></br>
-    <br></br>
-    <br></br>
+
 <h:body>
-      	   
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand" href="#">Article Review System</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNavDropdown">
+    <ul class="navbar-nav">
+      <li class="nav-item active">
+        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#"> Logged in User: <a><h:outputText value="#{sessionScope.userActive}" /></a></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">User ID : <a><h:outputText value="#{sessionScope.userId}" /></a></a>
+      </li>
+      <li class="nav-item dropdown">
+        <a class="nav-link " href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+          <a class="dropdown-item" href="#">Action</a>
+          <a class="dropdown-item" href="#">Another action</a>
+          <a class="dropdown-item" href="#">Something else here</a>
+        </div>
+      </li>
+    </ul>
+  </div>
+</nav>
+    <h:form>
+        <h:commandButton class="btn btn-danger" value="Logout" action="#{logout.logout()}" style="float: right" ></h:commandButton>    
+        </h:form>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+          </link>
+              <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js" integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0" crossorigin="anonymous"></script>
+              <br></br>	   
        <h2>Review Details</h2>
        <h:dataTable value="#{ratingb.reviews}" var="r" >	
             <h:column>
@@ -82,7 +109,7 @@ and open the template in the editor.
        <h:dataTable value="#{ratingb.ratings}" var="ratingItem" >
 	
             <h:column>
-			<f:facet name="header">On Scale of 5</f:facet>
+			<f:facet name="header">Rating</f:facet>
                         <p:rating value="#{ratingItem.rating}" readonly="true">
                         </p:rating>
                                  
@@ -95,8 +122,8 @@ and open the template in the editor.
        <br></br> 
            
        <h:form>
-            <input type="button" value="view" onclick="window.location.href='http://localhost:8080/ArticleRevSys/faces/addRating.xhtml?rid=#{item.review_id}&amp;userid=#{sessionScope.userId}'"  />  
-       </h:form>
+            <input type="button" class="btn btn-success" value="Rate this Review" onclick="window.location.href='http://localhost:8080/ArticleRevSys/faces/addRating.xhtml?rid=#{sessionScope.rid}'+'&amp;userid=#{sessionScope.userId}'" />  
+       </h:form>  
+</h:body>   
        
-    </h:body>
 </html>

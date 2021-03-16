@@ -10,6 +10,7 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Map;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
@@ -104,6 +105,14 @@ public class Login {
             HttpSession httpSession = request.getSession(false);
             httpSession.setAttribute("userActive", username);
             httpSession.setAttribute("userId", rs.getInt("uid"));
+            
+            
+        FacesContext context2 = FacesContext.getCurrentInstance();       
+        Map<String, Object> sessionMap = context2.getExternalContext().getSessionMap();
+        sessionMap.put("userid", rs.getInt("uid"));
+        
+            
+            
              return "loginSuccess";
 
         } else {

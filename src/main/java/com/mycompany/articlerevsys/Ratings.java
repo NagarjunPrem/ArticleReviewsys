@@ -35,10 +35,6 @@ public class Ratings {
         this.comment = comment;
     }
 
-    Ratings(int i, int i0, int i1, String hello) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
     public String getRating() {
         return rating;
     }
@@ -94,7 +90,7 @@ public class Ratings {
         //pstmt.setString(2,rid);
         //pstmt.setInt(3, rating);
         //pstmt.setString(4,comment);        
-        pstmt.executeUpdate();
+        //pstmt.executeUpdate();
 
         pstmt.close();
         connect.close();

@@ -183,14 +183,7 @@ public class RatingsBean implements Serializable{
         return reviews;
 
     }
-    
-    //create Rating Model  - feedback string, int rating - get . set
-    // new method
-    //void insertRatings(Rating rating){
-    
-    // db connn
-    
-    //query - insert 
+        
     
     
      public List<Ratings> getRatings() throws ClassNotFoundException, SQLException {

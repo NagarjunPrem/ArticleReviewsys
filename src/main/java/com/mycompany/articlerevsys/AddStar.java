@@ -15,9 +15,6 @@ import java.util.Map;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
-import org.primefaces.component.rating.Rating;
 
 /**
  *
@@ -29,8 +26,8 @@ public class AddStar {
     
     private List<Ratings> ratingsList = new ArrayList<>() ;
     private int rating;
-    private String comment;
-    
+    private String comment;    
+  
 
     public List<Ratings> getRatingsList() {
         return ratingsList;
@@ -64,23 +61,13 @@ public class AddStar {
 
     public void setStars() throws ClassNotFoundException, SQLException {
         
+             
+        
         FacesContext context = FacesContext.getCurrentInstance();
-        Map<String, String> paramMap = context.getExternalContext().getRequestParameterMap();
-        String reviewId = paramMap.get("rid");
         
-       
-        // Get session object from Session
-        
-        FacesContext context2 = FacesContext.getCurrentInstance();
-        HttpServletRequest request = (HttpServletRequest) context2.getExternalContext().getRequest();
-        HttpSession httpSession = request.getSession(false);
-        String uid = httpSession.getAttribute("userId").toString();
-        
-        /*FacesContext context = FacesContext.getCurrentInstance();
-        HttpServletRequest request = (HttpServletRequest)context.getExternalContext().getRequest();
-        HttpSession httpSession = request.getSession(false);
-        String uid = httpSession.getAttribute("userId").toString(); */
-
+        Map<String, Object> sessionMap = context.getExternalContext().getSessionMap();
+        String reviewId1 = (String) sessionMap.get("rid");
+        Integer uid1 = (Integer)sessionMap.get("userid");
         try {
             // The newInstance() call is a work around for some
             // broken Java implementations
@@ -106,16 +93,14 @@ public class AddStar {
         }
 
         
-        if(uid.isEmpty() || uid.isBlank() || uid == null) uid = "1";
-            
+             
         PreparedStatement pstmt = connect
                 .prepareStatement("INSERT INTO ratings(uid, rid, rating, comment) VALUES(?,?,?,?);");
 //uid = "1";
 //reviewId="1";
 
-        //pstmt.setInt(1, (uid));
-        pstmt.setInt(1, Integer.parseInt(uid));
-        pstmt.setInt(2, Integer.parseInt(reviewId));
+        pstmt.setInt(1,uid1);
+        pstmt.setInt(2, Integer.parseInt(reviewId1));
         pstmt.setInt(3, rating);
         pstmt.setString(4, comment); 
         pstmt.executeUpdate();
